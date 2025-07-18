@@ -1,10 +1,9 @@
-***Important note***:
-
-This assignment is meant to be completed within **a maximum of 2 hours**.
-
-Just attempt this assignment, and submit your code before **2 hours** is up, regardless of whether it is fully completed.
-
-You may provide **additional documentation** on how you would continue with this assignment if you were given more time.
+***Personal Details***:
+Name : Kavishnu G
+Dpt : Bsc Computer Science with Cognitive Systems
+ph : 8110993422
+mail id : kavishnug@gmail.com
+college mail id : kavishnug23bcg028@skasc.ac.in
 
 # Overview
 
