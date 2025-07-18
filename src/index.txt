@@ -1,0 +1,127 @@
+server.js
+const express = require("express");
+const fs = require("fs");
+const app = express();
+const PORT = 3001;
+
+// Read the movie list from file
+const movies = JSON.parse(fs.readFileSync("./movies_metadata.json"));
+
+// Show all movies (only few fields)
+app.get("/api/movies", (req, res) => {
+  const list = movies.map(m => ({
+    id: m.id,
+    title: m.title,
+    tagline: m.tagline,
+    vote_average: m.vote_average
+  }));
+  res.json(list);
+});
+
+// Show one movie by ID
+app.get("/api/movies/:id", (req, res) => {
+  const movie = movies.find(m => m.id === req.params.id);
+  if (movie) res.json(movie);
+  else res.status(404).send({ message: "Movie not found" });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+
+app.js
+import React, { useEffect, useState } from 'react';
+import './App.css';
+
+function App() {
+  const [movies, setMovies] = useState([]);
+  const [selected, setSelected] = useState(null);
+
+  // Load all movies at start
+  useEffect(() => {
+    fetch("/api/movies")
+      .then(res => res.json())
+      .then(setMovies);
+  }, []);
+
+  // When movie clicked, show detail
+  const showDetails = (id) => {
+    fetch(`/api/movies/${id}`)
+      .then(res => res.json())
+      .then(setSelected);
+  };
+
+  if (selected) {
+    return (
+      <div className="App">
+        <button onClick={() => setSelected(null)}>← Back</button>
+        <h2>{selected.title}</h2>
+        <p>{selected.tagline}</p>
+        <p>{selected.overview}</p>
+        <p>⭐ {selected.vote_average}</p>
+        <p>📅 {new Date(selected.release_date).toLocaleDateString()}</p>
+        <p>⏱️ {selected.runtime} mins</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="App">
+      <h1>🎬 Movie List</h1>
+      <div className="grid">
+        {movies.map(m => (
+          <div key={m.id} className="card" onClick={() => showDetails(m.id)}>
+            <h3>{m.title}</h3>
+            <p>{m.tagline}</p>
+            <p>⭐ {m.vote_average}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+css
+.App {
+  padding: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  background: #ddd;
+}
+
+button {
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+
+Mail Delivery Subsystem
+10:26 AM (53 minutes ago)
+Message blocked Your message to ganeshrajar23bcg016@skasc.ac.in has been blocked. See technical details below for more information. LEARN MORE The response was:
+
+KAVISHNU G 23BCG028 <kavishnug23bcg028@skasc.ac.in>
+11:16 AM (4 minutes ago)
+to ganeshrajar23bcg016
+
+
